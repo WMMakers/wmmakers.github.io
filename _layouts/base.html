@@ -17,7 +17,7 @@
         $('#main_content').headsmart()
       })
     </script>
-    <title>West Michigan Makers</title>
+    <title>{{page.title}}</title>
   </head>
 
   <body>
@@ -26,8 +26,8 @@
       <header>
         <span class="ribbon-outer">
           <span class="ribbon-inner">
-            <h1>West Michigan Makers</h1>
-            <h2>Make Something Cool</h2>
+            <h1>{{page.h1}}</h1>
+            <h2>{{page.h2}}</h2>
           </span>
           <span class="left-tail"></span>
           <span class="right-tail"></span>
@@ -44,16 +44,7 @@
 
 
       <section id="main_content">
-        <h2>
-<a id="hang-out-with-us" class="anchor" href="#hang-out-with-us" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hang Out With Us!</h2>
-
-<ul>
-<li>
-<a href="https://wmmakers.slack.com/">Chat</a> (<a href="https://wmmakers-slackin.herokuapp.com/">Register</a>)</li>
-<li><a href="https://groups.google.com/forum/#!forum/wmmakers">Mailing List</a></li>
-<li>
-<a href="http://axislab3d.com/">AxisLab 3D Printing</a> every other Wednesday</li>
-</ul>
+        {{content}}
       </section>
 
       <footer>
