@@ -567,3 +567,17 @@ dd p:first-child {
   font-size: .85em;
   font-style: italic;
 }
+
+/* #shell is 670px, #sidebar is 225px */
+@media (min-width: 695px) {
+  #sidebar {
+    position: absolute;
+    left: calc(50% + 335px);
+    top: 200px;
+  }
+}
+@media (max-width: 694px) {
+  #sidebar {
+    text-align: center;
+  }
+}
