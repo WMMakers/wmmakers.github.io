@@ -14,7 +14,21 @@
 .sponsor {
 	text-align: center;
 }
-.sponsor img{
+.sponsor img, ul.tiled img {
 	box-shadow: none;
 	border: none;
+}
+
+ul.tiled {
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+ul.tiled > li {
+	display: inline-block;
+	background: none;
+	padding: none;
+	flex-grow: 1;
+	text-align: center;
 }
