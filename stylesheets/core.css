@@ -4,32 +4,32 @@
 
 /* For FUOC Reasons */
 .event {
-	display: none;
+    display: none;
 }
 
 #event-when, #event-place {
-	text-align: center;
+    text-align: center;
 }
 
 .sponsor {
-	text-align: center;
+    text-align: center;
 }
 .sponsor img, ul.tiled img {
-	box-shadow: none;
-	border: none;
+    box-shadow: none;
+    border: none;
 }
 
 ul.tiled {
-	margin: 0;
-	padding: 0;
-	display: flex;
-	flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 ul.tiled > li {
-	display: inline-block;
-	background: none;
-	padding: none;
-	flex-grow: 1;
-	text-align: center;
+    display: inline-block;
+    background: none;
+    padding: none;
+    flex-grow: 1;
+    text-align: center;
 }
