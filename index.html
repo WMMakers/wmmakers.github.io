@@ -58,6 +58,12 @@ var eventsurl = "https://api.meetup.com/2/events?group_urlname=wmmakers&page=1&s
             return date.toLocaleTimeString('en-US', options);
         }
 
+        var group = {
+            city: "Grand Rapids",
+            state: "MI",
+            country: "US"
+        };
+
         $.getJSON(eventsurl, function(data) {
             if (data.status && data.status.match(/^200/) == null) {
                 console.error(data.status + ": " + data.details);
@@ -79,11 +85,7 @@ var eventsurl = "https://api.meetup.com/2/events?group_urlname=wmmakers&page=1&s
                 }
                 var state_country;
                 if (!venue || !venue.state) {
-                    if (group.state == "") {
-                        state_country = group.country.toUpperCase();
-                    } else {
-                        state_country = group.state;
-                    }
+                    state_country = group.state;
                 } else {
                     state_country = venue.state;
                 }
