@@ -3,7 +3,7 @@
 @import url("non-screen.css") only screen and (max-device-width:640px);
 
 /* For FUOC Reasons */
-.event {
+.event, .event-error {
     display: none;
 }
 

@@ -27,6 +27,12 @@ h2: Make Something Cool
         <div>Facebook page</div>
     </a>
   </li>
+  <li class="event-error" style="display: none">
+    <a href="https://www.meetup.com/wmmakers/">
+        <div><img src="/images/meetup.png" alt="Meetup" width=118 height=118></div>
+        <div>Meetup page</div>
+    </a>
+  </li>
 </ul>
 
 
@@ -65,56 +71,66 @@ var eventsurl = "https://api.meetup.com/2/events?group_urlname=wmmakers&page=1&s
         };
 
         $.getJSON(eventsurl, function(data) {
-            if (data.status && data.status.match(/^200/) == null) {
-                console.error(data.status + ": " + data.details);
-                $('.event').hide();
-            } else if (!data.results) {
-                console.error("No results", data);
-            } else  if (data.results.length == 0) {
-                console.info("Empty results", data);
-            } else {
-                var event = data.results[0];
-                console.log(event);
-                var venue = event.venue;
-                console.log(venue);
-                var city;
-                if (!venue || !venue.city) {
-                    city = group.city;
+            try {
+                if (data.status && data.status.match(/^200/) == null) {
+                    console.error(data.status + ": " + data.details);
+                    $('.event-error').show();
+                } else if (!data.results) {
+                    console.error("No results", data);
+                    $('.event-error').show();
+                } else  if (data.results.length == 0) {
+                    console.info("Empty results", data);
+                    $('.event-error').show();
                 } else {
-                    city = venue.city;
-                }
-                var state_country;
-                if (!venue || !venue.state) {
-                    state_country = group.state;
-                } else {
-                    state_country = venue.state;
-                }
-                var venue_addr;
-                if (venue) {
-                    if (venue.name !== undefined) {
-                        venue_addr = venue.name  + " - ";
-                    } else if (venue.address_1 !== undefined) {
-                        venue_addr = venue.address_1 + " - ";
+                    var event = data.results[0];
+                    console.log(event);
+                    var venue = event.venue;
+                    console.log(venue);
+                    var city;
+                    if (!venue || !venue.city) {
+                        city = group.city;
                     } else {
-                        venue_addr = "";
+                        city = venue.city;
                     }
-                } else {
-                   venue_addr = "";
+                    var state_country;
+                    if (!venue || !venue.state) {
+                        state_country = group.state;
+                    } else {
+                        state_country = venue.state;
+                    }
+                    var venue_addr;
+                    if (venue) {
+                        if (venue.name !== undefined) {
+                            venue_addr = venue.name  + " - ";
+                        } else if (venue.address_1 !== undefined) {
+                            venue_addr = venue.address_1 + " - ";
+                        } else {
+                            venue_addr = "";
+                        }
+                    } else {
+                       venue_addr = "";
+                    }
+                    var location = venue_addr + city + ", " + state_country;
+
+                    $('#event-date').text(getFormattedDate(event.time));
+                    $('#event-time').text(getFormattedTime(event.time));
+
+                    $('#event-link').prop('href', event.event_url);
+                    $('#event-link').text(event.name);
+
+                    $('#event-place').text(location);
+
+                    $('#event-desc').html(event.description);
+
+                    $('.event').show();
                 }
-                var location = venue_addr + city + ", " + state_country;
-
-                $('#event-date').text(getFormattedDate(event.time));
-                $('#event-time').text(getFormattedTime(event.time));
-
-                $('#event-link').prop('href', event.event_url);
-                $('#event-link').text(event.name);
-
-                $('#event-place').text(location);
-
-                $('#event-desc').html(event.description);
-
-                $('.event').show();
+            } catch (exc) {
+                console.error(exc);
+                $('.event-error').show();
             }
+        })
+        .fail(function() {
+            $('.event-error').show();
         });
 });
 </script>
